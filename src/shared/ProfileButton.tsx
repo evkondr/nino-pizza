@@ -1,6 +1,6 @@
 import { User } from 'lucide-react'
 import React from 'react'
-import { Button } from './components/ui/button'
+import { Button } from '../components/ui/button'
 
 const ProfileButton = () => {
   return (

@@ -1,13 +1,13 @@
 import React from 'react'
-import { cn } from './lib/utils'
+import { cn } from '../lib/utils'
 import { CartButton, Container, ProfileButton, SearchInput } from '.';
 import Link from 'next/link';
 import Image from 'next/image';
+import { PropsWithClass } from '@/types';
 
-interface Props {
+interface Props extends PropsWithClass {
   hasSearch?: boolean;
   hasCart?: boolean;
-  className?: string;
 }
 const Header = ({ className, hasSearch }:Props) => {
   return (
