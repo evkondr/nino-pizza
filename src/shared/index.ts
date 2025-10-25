@@ -4,6 +4,8 @@ import SearchInput from './SearchInput';
 import ProfileButton from './ProfileButton';
 import CartButton from './CartButton';
 import Title from './Title';
+import TopBar from './TopBar';
+import SortPopup from './SortPopup';
 
 export {
   Container,
@@ -11,5 +13,7 @@ export {
   SearchInput,
   ProfileButton,
   CartButton,
-  Title
+  Title,
+  TopBar,
+  SortPopup
 }

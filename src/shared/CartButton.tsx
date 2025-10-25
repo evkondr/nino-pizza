@@ -6,7 +6,7 @@ const CartButton = () => {
   return (
     <Button className={cn('group relative')}>
       <b>0 ₽</b>
-      <span className="h-full w-[1px] bg-white/30 mx-3" />
+      <span className="h-full w-px bg-white/30 mx-3" />
       <div className="flex items-center gap-1 transition duration-300 group-hover:opacity-0">
         <ShoppingCart size={16} className="relative" strokeWidth={2} />
         <b>1</b>
