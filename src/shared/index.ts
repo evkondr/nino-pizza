@@ -8,6 +8,7 @@ import TopBar from './TopBar';
 import SortPopup from './SortPopup';
 import Filters from './Filters';
 import FilterCheckbox from './FilterCheckbox';
+import { RangeSlider } from './RangeSlider';
 
 export {
   Container,
@@ -19,5 +20,6 @@ export {
   TopBar,
   SortPopup,
   Filters,
-  FilterCheckbox
+  FilterCheckbox,
+  RangeSlider
 }
