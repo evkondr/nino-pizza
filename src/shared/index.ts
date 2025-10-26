@@ -6,6 +6,8 @@ import CartButton from './CartButton';
 import Title from './Title';
 import TopBar from './TopBar';
 import SortPopup from './SortPopup';
+import Filters from './Filters';
+import FilterCheckbox from './FilterCheckbox';
 
 export {
   Container,
@@ -15,5 +17,7 @@ export {
   CartButton,
   Title,
   TopBar,
-  SortPopup
+  SortPopup,
+  Filters,
+  FilterCheckbox
 }
