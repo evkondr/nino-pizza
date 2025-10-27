@@ -1,6 +1,8 @@
+'use client'
 import { PropsWithClass } from "@/types"
 import { FilterCheckbox, RangeSlider, Title } from "."
 import { Input } from "@/components/ui/input"
+import CheckboxFiltersGroup from "./CheckboxFiltersGroup"
 
 const Filters = ({ className }:PropsWithClass) => {
   return (
@@ -21,6 +23,55 @@ const Filters = ({ className }:PropsWithClass) => {
           step={10}
           value={[0, 1000]} />
       </div>
+      <CheckboxFiltersGroup
+        title="Ингредиенты"
+        className="mt-5"
+        limit={5}
+        defaultItems={[
+          {
+            text: 'Томаты',
+            value: '1'
+          },
+          {
+            text: 'Красный лук',
+            value: '2'
+          },
+          {
+            text: 'Сырный соус',
+            value: '3'
+          },
+          {
+            text: 'Моццарелла',
+            value: '4'
+          },
+          {
+            text: 'Соленный огурчик',
+            value: '5'
+          },
+        ]}
+        items={[
+          {
+            text: 'Томаты',
+            value: '1'
+          },
+          {
+            text: 'Красный лук',
+            value: '2'
+          },
+          {
+            text: 'Сырный соус',
+            value: '3'
+          },
+          {
+            text: 'Моццарелла',
+            value: '4'
+          },
+          {
+            text: 'Соленный огурчик',
+            value: '5'
+          },
+        ]}
+      />
     </div>
   )
 }
