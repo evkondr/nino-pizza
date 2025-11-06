@@ -26,7 +26,7 @@ const Filters = ({ className }:PropsWithClass) => {
       <CheckboxFiltersGroup
         title="Ингредиенты"
         className="mt-5"
-        limit={5}
+        limit={3}
         defaultItems={[
           {
             text: 'Томаты',
