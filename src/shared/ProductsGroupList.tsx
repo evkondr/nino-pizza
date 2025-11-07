@@ -1,9 +1,11 @@
+'use client'
 import { PropsWithClass } from "@/types";
 import Title from "./Title";
 import { RefObject, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import ProductCard from "./ProductCard";
 import { useIntersection } from 'react-use';
+import { useCategoryStore } from "@/store/category";
 
 interface Props extends PropsWithClass {
   title: string;
@@ -18,13 +20,14 @@ const ProductsGroupList = ({
   categoryId,
   className,
 }:Props) => {
+  const { setActiveId } = useCategoryStore();
   const intersectionRef = useRef<null | HTMLDivElement>(null);
   const intersection = useIntersection(intersectionRef as RefObject<HTMLDivElement>, {
     threshold: 1
   });
   useEffect(() => {
     if(intersection?.isIntersecting) {
-      console.log(title)
+      setActiveId(categoryId);
     }
   }, [intersection?.isIntersecting, title])
   return (
