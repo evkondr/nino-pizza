@@ -9,3 +9,7 @@ export interface FilterCheckBoxProps {
   checked?: boolean;
   name?: string;
 }
+export interface CategoryStoreState {
+  activeId: number;
+  setActiveId: (activeId: number) => void;
+}

@@ -26,6 +26,14 @@ export default function Home() {
                 items: [{ price: 550 }],
                 ingredients: []
               }]} categoryId={0} />
+              <ProductsGroupList title="завтрак" items={[{
+                id: 2,
+                name: 'Пицца с хреном',
+                imageUrl: 'https://media.dodostatic.net/image/r:584x584/0199b8e98ec871ab8a443887a3e1a136.avif',
+                price: 550,
+                items: [{ price: 550 }],
+                ingredients: []
+              }]} categoryId={1} />
             </div>
           </div>
         </div>

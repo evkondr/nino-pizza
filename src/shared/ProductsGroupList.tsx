@@ -1,8 +1,9 @@
 import { PropsWithClass } from "@/types";
 import Title from "./Title";
-import { useRef } from "react";
+import { RefObject, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import ProductCard from "./ProductCard";
+import { useIntersection } from 'react-use';
 
 interface Props extends PropsWithClass {
   title: string;
@@ -17,7 +18,15 @@ const ProductsGroupList = ({
   categoryId,
   className,
 }:Props) => {
-  const intersectionRef = useRef(null);
+  const intersectionRef = useRef<null | HTMLDivElement>(null);
+  const intersection = useIntersection(intersectionRef as RefObject<HTMLDivElement>, {
+    threshold: 1
+  });
+  useEffect(() => {
+    if(intersection?.isIntersecting) {
+      console.log(title)
+    }
+  }, [intersection?.isIntersecting, title])
   return (
     <div className={className} id={title} ref={intersectionRef}>
       <Title text={title} size="lg" className="font-extrabold mb-5" />
