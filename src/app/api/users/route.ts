@@ -1,4 +1,3 @@
-import { User } from "@/generated/prisma";
 import { prisma } from "@/lib/prisma-client";
 import { NextRequest, NextResponse } from "next/server";
 
