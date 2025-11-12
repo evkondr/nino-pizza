@@ -9,7 +9,7 @@ interface Props extends PropsWithClass {
   hasSearch?: boolean;
   hasCart?: boolean;
 }
-const Header = ({ className, hasSearch }:Props) => {
+const Header = ({ className, hasSearch = true }:Props) => {
   return (
     <header className={cn('', className)}>
       <Container className="flex items-center justify-between py-8">
