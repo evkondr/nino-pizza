@@ -1,4 +1,3 @@
-import React from 'react'
 import { cn } from '../lib/utils'
 import { CartButton, Container, ProfileButton, SearchInput } from '.';
 import Link from 'next/link';
