@@ -3,6 +3,7 @@ import { Input } from '@/components/ui/input';
 import { FilterCheckBoxProps, PropsWithClass } from '@/types';
 import React, { useState } from 'react'
 import FilterCheckbox from './FilterCheckbox';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface Props extends PropsWithClass {
   title: string;
@@ -23,7 +24,8 @@ const CheckboxFiltersGroup = ({
   limit = 5,
   defaultItems,
   searchInputPlaceholder = 'Поиск...',
-  className
+  className,
+  loading
 }:Props) => {
   const [showAll, setShowAll] = useState<boolean>(false);
   const [ searchValue, setSearchValue ] = useState<string>('');
@@ -33,6 +35,17 @@ const CheckboxFiltersGroup = ({
   const onChangeSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
+  if(loading) {
+    return (
+      <div className={className}>
+        <p className="font-bold mb-3">{title}</p>
+        {[...new Array(limit)].map((_, index) => (
+          <Skeleton key={index} className="h-6 mb-4 rounded-xl" />
+        ))}
+        <Skeleton className="w-28 h-6 mb-4 rounded-xl" />
+      </div>
+    )
+  }
   return (
     <div className={className}>
       <p className="font-bold mb-3">{title}</p>

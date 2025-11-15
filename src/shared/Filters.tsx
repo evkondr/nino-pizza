@@ -3,8 +3,11 @@ import { PropsWithClass } from "@/types"
 import { FilterCheckbox, RangeSlider, Title } from "."
 import { Input } from "@/components/ui/input"
 import CheckboxFiltersGroup from "./CheckboxFiltersGroup"
+import useIngredientsFilter from "@/hooks/useIngredientsFilter"
 
 const Filters = ({ className }:PropsWithClass) => {
+  const { ingredients, loading } = useIngredientsFilter();
+  const ingredientItems = ingredients.map((item) => ({ value: String(item.id), text: item.name }));
   return (
     <div className={className}>
       <Title text="Фильтрация" size="xs" className="mb-5 font-bold" />
@@ -27,50 +30,9 @@ const Filters = ({ className }:PropsWithClass) => {
         title="Ингредиенты"
         className="mt-5"
         limit={3}
-        defaultItems={[
-          {
-            text: 'Томаты',
-            value: '1'
-          },
-          {
-            text: 'Красный лук',
-            value: '2'
-          },
-          {
-            text: 'Сырный соус',
-            value: '3'
-          },
-          {
-            text: 'Моццарелла',
-            value: '4'
-          },
-          {
-            text: 'Соленный огурчик',
-            value: '5'
-          },
-        ]}
-        items={[
-          {
-            text: 'Томаты',
-            value: '1'
-          },
-          {
-            text: 'Красный лук',
-            value: '2'
-          },
-          {
-            text: 'Сырный соус',
-            value: '3'
-          },
-          {
-            text: 'Моццарелла',
-            value: '4'
-          },
-          {
-            text: 'Соленный огурчик',
-            value: '5'
-          },
-        ]}
+        loading={loading}
+        defaultItems={ingredientItems.slice(0, 6)}
+        items={ingredientItems}
       />
     </div>
   )
