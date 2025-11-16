@@ -13,6 +13,10 @@ export interface CategoryStoreState {
   activeId: number;
   setActiveId: (activeId: number) => void;
 }
+export interface PriceRange { 
+  from: number,
+  to: number
+}
 export enum ApiRoutes {
   SEARCH_PRODUCTS = '/products/search',
   INGREDIENTS = '/ingredients',
