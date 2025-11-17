@@ -17,7 +17,6 @@ interface Props extends PropsWithClass {
   selected?: Set<string>;
   className?: string;
   name?: string;
-  
 }
 const CheckboxFiltersGroup = ({
   title,
@@ -28,12 +27,17 @@ const CheckboxFiltersGroup = ({
   className,
   loading,
   selected,
-  onClickCheckbox
+  onClickCheckbox,
+  name
 }:Props) => {
   const [showAll, setShowAll] = useState<boolean>(false);
   const [ searchValue, setSearchValue ] = useState<string>('');
 
-  const list = showAll ? items.filter((item) => item.text.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())) : (defaultItems || items).slice(0, limit);
+  const list = showAll ?
+    items.filter((item) => 
+      item.text.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()))
+      :
+      (defaultItems || items).slice(0, limit);
 
   const onChangeSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
@@ -64,7 +68,7 @@ const CheckboxFiltersGroup = ({
       <div className="flex flex-col gap-4 max-h-96 pr-2 overflow-auto scrollbar">
         {list.map((item, index) => (<FilterCheckbox
             key={index}
-            name="ingredients"
+            name={name}
             text={item.text}
             value={item.value}
             endAdornment={item.endAdornment}

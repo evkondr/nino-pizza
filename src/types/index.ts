@@ -21,3 +21,9 @@ export enum ApiRoutes {
   SEARCH_PRODUCTS = '/products/search',
   INGREDIENTS = '/ingredients',
 }
+export interface Filters {
+  sizes: Set<string>;
+  pizzaTypes: Set<string>;
+  selectedIngredients: Set<string>;
+  prices: PriceRange;
+}

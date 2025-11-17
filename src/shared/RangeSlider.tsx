@@ -11,7 +11,7 @@ interface SliderProps extends PropsWithClass {
   step: number;
   formatLabel?: (value: number) => string;
   value?: number[] | readonly number[];
-  onValueChange?: (values: number[]) => void;
+  onValueChange?: (values: [number, number]) => void;
 };
 
 const RangeSlider = React.forwardRef(
@@ -27,7 +27,7 @@ const RangeSlider = React.forwardRef(
       setLocalValues(Array.isArray(value) ? value : [min, max]);
     }, [min, max, value]);
 
-    const handleValueChange = (newValues: number[]) => {
+    const handleValueChange = (newValues: [number, number]) => {
       setLocalValues(newValues);
       if (onValueChange) {
         onValueChange(newValues);
