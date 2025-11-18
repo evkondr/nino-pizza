@@ -1,10 +1,11 @@
 'use client'
-import { PriceRange, PropsWithClass } from "@/types"
+import { PropsWithClass } from "@/types"
 import { FilterCheckbox, RangeSlider, Title } from "."
 import { Input } from "@/components/ui/input"
 import CheckboxFiltersGroup from "./CheckboxFiltersGroup"
 import useIngredientsFilter from "@/hooks/useIngredientsFilter"
 import { useFilters } from "@/hooks/useFilters"
+import useFilterQuery from "@/hooks/useFilterQuery"
 
 const Filters = ({ className }:PropsWithClass) => {
   const { ingredients, loading } = useIngredientsFilter();
@@ -14,6 +15,7 @@ const Filters = ({ className }:PropsWithClass) => {
     filters.setPrices('from', pricesRange[0]);
     filters.setPrices('to', pricesRange[1]);
   }
+  useFilterQuery(filters); 
   return (
     <div className={className}>
       <Title text="Фильтрация" size="xs" className="mb-5 font-bold" />
@@ -48,13 +50,13 @@ const Filters = ({ className }:PropsWithClass) => {
       <div className="mt-5 border-y border-y-neutral-100 py-6 pb-7">
         <p className="font-bold mb-3">Цена от и до:</p>
         <div className="flex gap-3 mb-5">
-          <Input type="number" placeholder="0" min={0} max={1000} value={filters.prices.from} onChange={(e) => filters.setPrices('from', Number(e.target.value))} />
-          <Input type="number" placeholder="1000" min={100} max={1000} value={filters.prices.to} onChange={(e) => filters.setPrices('to', Number(e.target.value))}/>
+          <Input type="number" placeholder="0" min={0} max={1000} value={filters.prices.from || 0} onChange={(e) => filters.setPrices('from', Number(e.target.value))} />
+          <Input type="number" placeholder="1000" min={100} max={1000} value={filters.prices.to || 1000} onChange={(e) => filters.setPrices('to', Number(e.target.value))}/>
         </div>
         <RangeSlider min={0}
           max={1000}
           step={10}
-          value={[filters.prices.from, filters.prices.to]}
+          value={[filters.prices.from || 0, filters.prices.to || 1000]}
           onValueChange={updatePrices}
         />
       </div>

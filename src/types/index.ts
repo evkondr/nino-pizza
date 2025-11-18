@@ -14,8 +14,8 @@ export interface CategoryStoreState {
   setActiveId: (activeId: number) => void;
 }
 export interface PriceRange { 
-  from: number,
-  to: number
+  from?: number,
+  to?: number
 }
 export enum ApiRoutes {
   SEARCH_PRODUCTS = '/products/search',

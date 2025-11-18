@@ -13,8 +13,8 @@ export function useFilters():ReturnProps {
   const [sizes, { toggle: toggleSizes }] = useSet(new Set<string>(),);
   const [pizzaTypes, { toggle: togglePizzaTypes }] = useSet(new Set<string>());
    const [prices, setPrices] = useState<PriceRange>({
-    from: 0,
-    to: 1000,
+    from: undefined,
+    to: undefined,
   });
   const updatePrice = (name: keyof PriceRange, value: number) => {
     setPrices((prev) => ({
@@ -22,7 +22,9 @@ export function useFilters():ReturnProps {
       [name]: value,
     }));
   };
-  return {
+  
+  return useMemo(() => (
+    {
       sizes,
       pizzaTypes,
       selectedIngredients,
@@ -32,4 +34,5 @@ export function useFilters():ReturnProps {
       setSizes: toggleSizes,
       setSelectedIngredients: toggleIngredients,
     }
+  ), [pizzaTypes, prices, selectedIngredients, sizes, toggleIngredients, togglePizzaTypes, toggleSizes]) 
 }
