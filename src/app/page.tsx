@@ -1,13 +1,25 @@
+import { prisma } from "@/lib/prisma-client";
 import { Container, Filters, Title, TopBar } from "@/shared";
 import ProductsGroupList from "@/shared/ProductsGroupList";
 
-export default function Home() {
+export default async function Home() {
+  const categories = await prisma.category.findMany({
+    include: {
+      products: {
+        include: {
+          items: true,
+          ingredients: true
+        }
+      }
+    }
+  });
+  console.log( categories);
   return (
     <>
       <Container className="mt-8">
          <Title text="Все пиццы"  size="sm" className="font-bold"/>
       </Container>
-      <TopBar />
+      <TopBar categories={categories}/>
       <Container className="mt-10 pb-14">
         <div className="flex gap-[80px]">
           {/* Левый сайдбар */}
@@ -17,22 +29,13 @@ export default function Home() {
           {/* Продукты */}
           <div className="flex-1">
             <div className="flex flex-col gap-16">
-              <ProductsGroupList title="Пицца" items={[{
-                id: 1,
-                name: 'Пицца с хреном',
-                imageUrl: 'https://media.dodostatic.net/image/r:584x584/0199b8e98ec871ab8a443887a3e1a136.avif',
-                price: 550,
-                items: [{ price: 550 }],
-                ingredients: []
-              }]} categoryId={0} />
-              <ProductsGroupList title="Комбо" items={[{
-                id: 2,
-                name: 'Пицца с хреном',
-                imageUrl: 'https://media.dodostatic.net/image/r:584x584/0199b8e98ec871ab8a443887a3e1a136.avif',
-                price: 550,
-                items: [{ price: 550 }],
-                ingredients: []
-              }]} categoryId={1} />
+              {categories.map((category) =>  (
+                <ProductsGroupList 
+                  key={category.id}
+                  categoryId={category.id}
+                  title={category.name} items={category.products}  />
+              ))}
+              
             </div>
           </div>
         </div>
