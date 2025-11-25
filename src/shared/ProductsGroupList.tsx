@@ -23,13 +23,13 @@ const ProductsGroupList = ({
   const { setActiveId } = useCategoryStore();
   const intersectionRef = useRef<null | HTMLDivElement>(null);
   const intersection = useIntersection(intersectionRef as RefObject<HTMLDivElement>, {
-    threshold: 1
+    threshold: 0
   });
   useEffect(() => {
     if(intersection?.isIntersecting) {
       setActiveId(categoryId);
     }
-  }, [intersection?.isIntersecting, title])
+  }, [categoryId, intersection?.isIntersecting, setActiveId, title])
   return (
     <div className={className} id={title} ref={intersectionRef}>
       <Title text={title} size="lg" className="font-extrabold mb-5" />
