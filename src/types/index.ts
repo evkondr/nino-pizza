@@ -27,3 +27,8 @@ export interface Filters {
   selectedIngredients: Set<string>;
   prices: PriceRange;
 }
+export type Variant = {
+  name: string;
+  value: string;
+  disabled?: boolean;
+};
