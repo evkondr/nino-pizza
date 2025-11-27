@@ -13,7 +13,6 @@ export default async function Home() {
       }
     }
   });
-  console.log( categories);
   return (
     <>
       <Container className="mt-8">
