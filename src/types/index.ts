@@ -1,3 +1,5 @@
+import { Prisma } from "@/generated/prisma";
+
 export interface PropsWithClass {
   className?: string
 }
@@ -32,3 +34,8 @@ export type Variant = {
   value: string;
   disabled?: boolean;
 };
+export type ProductsWithRelations = Prisma.ProductGetPayload<{
+  include: {
+    ingredients: true,
+  }
+}>
