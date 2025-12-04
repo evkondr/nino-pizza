@@ -37,5 +37,6 @@ export type Variant = {
 export type ProductsWithRelations = Prisma.ProductGetPayload<{
   include: {
     ingredients: true,
+    items: true,
   }
 }>

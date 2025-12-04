@@ -33,7 +33,6 @@ export default function ChooseProductForm({
 
       <div className="w-[490px] bg-[#f7f6f5] p-7">
         <Title text={name} size="md" className="font-extrabold mb-1" />
-
         <Button
           loading={loading}
           onClick={() => onSubmit?.()}
