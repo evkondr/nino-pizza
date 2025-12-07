@@ -1,3 +1,4 @@
+'use client';
 import { Ingredient, ProductItem } from "@/generated/prisma";
 import { cn } from "@/lib/utils";
 import ProductImage from "./ProductImage";

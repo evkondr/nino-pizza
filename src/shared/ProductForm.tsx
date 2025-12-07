@@ -1,3 +1,4 @@
+'use client'
 import { ProductsWithRelations } from '@/types';
 import React from 'react'
 import ChoosePizzaForm from './ChoosePizzaForm';

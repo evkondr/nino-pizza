@@ -1,7 +1,6 @@
 import { prisma } from "@/lib/prisma-client";
-import { Container, Title } from "@/shared";
-import GroupVariants from "@/shared/GroupVariants";
-import ProductImage from "@/shared/ProductImage";
+import { Container } from "@/shared";
+import ProductForm from "@/shared/ProductForm";
 import { notFound } from "next/navigation";
 
 interface Props {
@@ -10,36 +9,20 @@ interface Props {
 export default async function Product({ params }:Props) {
   const {id} = await params
   const product = await prisma.product.findFirst({
-    where: { id: Number(id)}
+    where: { 
+      id: Number(id)
+    },
+    include: {
+      items: true,
+      ingredients: true,
+    }
   })
   if(!product) {
     return notFound();
   }
   return (
     <Container className="flex flex-col my-18">
-      <div className="flex flex-1">
-        <ProductImage imageUrl={product.imageUrl} size={30}/>
-        <div className="w=[490] bg-[#f7f6f5] p-7">
-          <Title text={product.name} size="md" className="front-extrabold mb-1" />
-          <GroupVariants items={[
-            {
-              name: "Маленькая",
-              value: "1"
-            },
-            {
-              name: "Средняя",
-              value: "2"
-            },
-            {
-              name: "Большая",
-              value: "3",
-              disabled: true
-            },
-          ]}
-          value="1"
-        />
-        </div>
-      </div>
+      <ProductForm product={product} />
     </Container>
   );
 }
