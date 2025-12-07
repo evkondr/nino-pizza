@@ -9,7 +9,7 @@ interface Props {
 const ProductForm = ({ product, onSubmit: _onSubmit}:Props) => {
   const isPizza = Boolean(product.items[0].pizzaType);
   return isPizza ? ((
-    <ChoosePizzaForm imageUrl={product.imageUrl} name={product.name} ingredients={[]} items={[]} onSubmit={() => {}} />
+    <ChoosePizzaForm imageUrl={product.imageUrl} name={product.name} ingredients={product.ingredients} items={product.items} onSubmit={() => {}} />
   )) : (<ChooseProductForm imageUrl={product.imageUrl} name={product.name} onSubmit={() => { } } price={0} />)
 }
 
