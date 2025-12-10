@@ -17,13 +17,13 @@ const CartDrawer = ({ children }:PropsWithChildren) => {
           </SheetTitle>
         </SheetHeader>
         <CartDrawerItem
-            id={0}
-            imageUrl={'https://cdn.dodostatic.net/static/Img/Ingredients/99f5cb91225b4875bd06a26d2e842106.png'}
-            details={''}
-            name={''}
-            price={450}
-            quantity={1}
-          />
+          id={0}
+          imageUrl={'https://cdn.dodostatic.net/static/Img/Ingredients/99f5cb91225b4875bd06a26d2e842106.png'}
+          details={''}
+          name={''}
+          price={450}
+          quantity={1}
+        />
         <SheetFooter className="bg-white p-8">
           <div className="w-full">
             <div className="flex mb-4">

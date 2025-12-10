@@ -22,6 +22,7 @@ export interface PriceRange {
 export enum ApiRoutes {
   SEARCH_PRODUCTS = '/products/search',
   INGREDIENTS = '/ingredients',
+  CART = '/cart'
 }
 export interface Filters {
   sizes: Set<string>;
@@ -48,4 +49,47 @@ export interface CartItemProps {
   price: number;
   quantity: number;
   disabled?: boolean;
+}
+export type CartStateItem = {
+  id: number;
+  quantity: number;
+  name: string;
+  imageUrl: string;
+  price: number;
+  disabled?: boolean;
+  pizzaSize?: number | null;
+  pizzaType?: number | null;
+  ingredients: Array<{ name: string; price: number }>;
+};
+export type CartDto = Prisma.CartGetPayload<{
+  include: {
+    items: {
+      include: {
+        productItem: {
+          include: {
+            product: true
+          }
+        },
+        ingredients: true
+      }
+    }
+  }
+}>
+export interface CartState {
+  loading: boolean;
+  error: boolean;
+  totalAmount: number;
+  items: CartStateItem[];
+
+  /* Получение товаров из корзины */
+  fetchCartItems: () => Promise<void>;
+
+  /* Запрос на обновление количества товара */
+  updateItemQuantity: (id: number, quantity: number) => Promise<void>;
+
+  /* Запрос на добавление товара в корзину CreateCartItemValues*/
+  addCartItem: (values: any) => Promise<void>;
+
+  /* Запрос на удаление товара из корзины */
+  removeCartItem: (id: number) => Promise<void>;
 }
