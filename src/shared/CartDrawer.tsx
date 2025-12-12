@@ -3,27 +3,36 @@ import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren, useEffect } from 'react'
 import CartDrawerItem from './CartDrawerItem'
+import { useCartStore } from '@/store/cart';
 
 const CartDrawer = ({ children }:PropsWithChildren) => {
+  const { totalAmount, fetchCartItems, items } = useCartStore();
+  useEffect(() => {
+    fetchCartItems();
+  }, [fetchCartItems]);
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
       <SheetContent className="flex flex-col justify-between pb-0 bg-[#F4F1EE]">
         <SheetHeader>
           <SheetTitle>
-            В корзине <span className="font-bold">3 товара</span>
+            В корзине <span className="font-bold">{totalAmount} товара</span>
           </SheetTitle>
         </SheetHeader>
-        <CartDrawerItem
-          id={0}
-          imageUrl={'https://cdn.dodostatic.net/static/Img/Ingredients/99f5cb91225b4875bd06a26d2e842106.png'}
+        {items.map((item) => (
+          <CartDrawerItem
+          key={item.id}
+          id={item.id}
+          imageUrl={item.imageUrl}
           details={''}
-          name={''}
-          price={450}
-          quantity={1}
+          name={item.name}
+          price={item.price}
+          quantity={item.quantity}
         />
+        ))}
+        
         <SheetFooter className="bg-white p-8">
           <div className="w-full">
             <div className="flex mb-4">
