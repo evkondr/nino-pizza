@@ -2,7 +2,6 @@ import { getCartDetails } from "@/lib/get-cart-details";
 import { apiClient } from "@/services/api-client";
 import { CartState } from "@/types";
 import { create } from "zustand";
-
 export const useCartStore = create<CartState>((set, get) => ({
   items: [],
   error: false,
@@ -11,7 +10,7 @@ export const useCartStore = create<CartState>((set, get) => ({
   fetchCartItems: async () => {
     try {
       set({ loading: true, error: false});
-      const data = await apiClient.cartService.gerCart();
+      const data = await apiClient.cartService.getCart();
       set(getCartDetails(data));
     } catch (error) {
       console.log(error);

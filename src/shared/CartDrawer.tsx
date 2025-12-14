@@ -6,6 +6,8 @@ import Link from 'next/link'
 import React, { PropsWithChildren, useEffect } from 'react'
 import CartDrawerItem from './CartDrawerItem'
 import { useCartStore } from '@/store/cart';
+import { getCartItemDetails } from '@/lib/get-cart-item-details';
+import { PizzaSize, PizzaType } from '@/lib/constants';
 
 const CartDrawer = ({ children }:PropsWithChildren) => {
   const { totalAmount, fetchCartItems, items } = useCartStore();
@@ -23,14 +25,18 @@ const CartDrawer = ({ children }:PropsWithChildren) => {
         </SheetHeader>
         {items.map((item) => (
           <CartDrawerItem
-          key={item.id}
-          id={item.id}
-          imageUrl={item.imageUrl}
-          details={''}
-          name={item.name}
-          price={item.price}
-          quantity={item.quantity}
-        />
+            key={item.id}
+            id={item.id}
+            imageUrl={item.imageUrl}
+            details={getCartItemDetails(
+              item.ingredients,
+              item.pizzaType as PizzaType,
+              item.pizzaSize as PizzaSize
+            )}
+            name={item.name}
+            price={item.price}
+            quantity={item.quantity}
+          />
         ))}
         
         <SheetFooter className="bg-white p-8">

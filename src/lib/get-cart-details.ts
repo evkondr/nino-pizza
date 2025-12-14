@@ -20,7 +20,7 @@ export const getCartDetails = (data: CartDto):ReturnProps => {
     })),
   })) as CartStateItem[];
   return {
-  items,
-  totalAmount: 0
-}
+    items,
+    totalAmount: data.totalAmount
+  }
 }
