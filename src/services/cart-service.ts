@@ -14,3 +14,8 @@ export const updateCartItemQuantity = async (dto:UpdateCartItemDto):Promise<Cart
   const { data } = await httpInstance.patch<CartDto>(`${ApiRoutes.CART}/${dto.id}`, { quantity: dto.quantity })
   return data;
 }
+
+export const removeCartItem = async (id:number):Promise<CartDto> => {
+  const { data } = await httpInstance.delete<CartDto>(`${ApiRoutes.CART}/${id}`)
+  return data;
+}

@@ -37,4 +37,34 @@ export async function PATCH(req:NextRequest, { params }:Params) {
     console.log('[CART_PATCH] Server error', error);
     return NextResponse.json({ message: 'Не удалось обновить корзину ' }, { status: 500 });
   }
-} 
+}
+export async function DELETE(req:NextRequest, { params }:Params) {
+  try {
+    const { id } = await params
+    //Getting cart token from cookie
+    const cartToken = req.cookies.get('cartToken')?.value || '11111';
+    if (!cartToken) {
+      return NextResponse.json({ error: 'Токен не найден'}, { status: 403})
+    };
+
+    const cartItem = await prisma.cartItem.findFirst({
+      where: {
+        id: Number(id)
+      }
+    });
+    if (!cartItem) {
+      return NextResponse.json({ error: 'Продукт в корзине не найден' }, {status: 404});
+    };
+    await prisma.cartItem.delete({
+      where: {
+        id: Number(id)
+      }
+    });
+    const updatedUserCart = await updateCartTotalAmount(cartToken);
+
+    return NextResponse.json(updatedUserCart);
+  } catch (error) {
+    console.log('[CART_PATCH] Server error', error);
+    return NextResponse.json({ message: 'Не удалось обновить корзину ' }, { status: 500 });
+  }
+}
