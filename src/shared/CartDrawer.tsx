@@ -10,7 +10,11 @@ import { getCartItemDetails } from '@/lib/get-cart-item-details';
 import { PizzaSize, PizzaType } from '@/lib/constants';
 
 const CartDrawer = ({ children }:PropsWithChildren) => {
-  const { totalAmount, fetchCartItems, items } = useCartStore();
+  const { totalAmount, items, fetchCartItems, updateItemQuantity } = useCartStore();
+  const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
+    const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
+    updateItemQuantity(id, newQuantity);
+  }
   useEffect(() => {
     fetchCartItems();
   }, [fetchCartItems]);
@@ -36,6 +40,7 @@ const CartDrawer = ({ children }:PropsWithChildren) => {
             name={item.name}
             price={item.price}
             quantity={item.quantity}
+            onClickCountButton={(type) => onClickCountButton(item.id, item.quantity, type)}
           />
         ))}
         
