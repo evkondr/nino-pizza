@@ -1,5 +1,5 @@
 import { httpInstance } from "@/lib/http-instance";
-import { ApiRoutes, CartDto } from "@/types";
+import { ApiRoutes, CartDto, CreateCartItemValues } from "@/types";
 
 type UpdateCartItemDto = {
   id: number
@@ -17,5 +17,10 @@ export const updateCartItemQuantity = async (dto:UpdateCartItemDto):Promise<Cart
 
 export const removeCartItem = async (id:number):Promise<CartDto> => {
   const { data } = await httpInstance.delete<CartDto>(`${ApiRoutes.CART}/${id}`)
+  return data;
+}
+
+export const addCartItem = async (value:CreateCartItemValues):Promise<CartDto> => {
+  const { data } = await httpInstance.post<CartDto>(`${ApiRoutes.CART}`, value)
   return data;
 }

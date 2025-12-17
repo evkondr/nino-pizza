@@ -1,6 +1,6 @@
 import { getCartDetails } from "@/lib/get-cart-details";
 import { apiClient } from "@/services/api-client";
-import { CartDto, CartState } from "@/types";
+import { CartState, CreateCartItemValues } from "@/types";
 import { create } from "zustand";
 export const useCartStore = create<CartState>((set, get) => ({
   items: [],
@@ -34,11 +34,22 @@ export const useCartStore = create<CartState>((set, get) => ({
       set({ loading: false })
     }
   },
-  addCartItem: async (values: CartDto) => {},
   removeCartItem: async (id: number) => {
     try {
       set({ loading: true, error: false});
       const data = await apiClient.cartService.removeCartItem(id);
+      set(getCartDetails(data));
+    } catch (error) {
+      console.log(error);
+      set({ error: true})
+    } finally {
+      set({ loading: false })
+    }
+  },
+  addCartItem: async (values: CreateCartItemValues) => {
+    try {
+      set({ loading: true, error: false});
+      const data = await apiClient.cartService.addCartItem(values);
       set(getCartDetails(data));
     } catch (error) {
       console.log(error);

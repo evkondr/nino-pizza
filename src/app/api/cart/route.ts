@@ -1,6 +1,9 @@
+import { findOrCreateCart } from "@/lib/find-or-create-cart";
 import { prisma } from "@/lib/prisma-client";
+import { CreateCartItemValues } from "@/types";
 import { NextRequest, NextResponse } from "next/server";
 
+//Get all cart items
 export async function GET(req:NextRequest) {
   try {
     const cartToken = req.cookies.get('cartToken')?.value || '11111'; // unauthorized user token for cart
@@ -30,5 +33,52 @@ export async function GET(req:NextRequest) {
     return NextResponse.json(userCart);
   } catch (error) {
     console.log(error);
+  }
+}
+
+//Add item to cart
+export async function POST(req:NextRequest) {
+  try {
+    let token = req.cookies.get('cartToken')?.value;
+    if (!token) {
+      token = crypto.randomUUID();
+    }
+    const userCart = await findOrCreateCart(token);
+    const data = (await req.json()) as CreateCartItemValues;
+    const findCartItem = await prisma.cartItem.findFirst({
+      where: {
+        cartId: userCart.id,
+        productItemId: data.productItemId,
+        ingredients: {
+          every: {
+            id: { in: data.ingredients },
+          },
+        },
+      },
+    });
+    
+    if (findCartItem) {
+      // if product item already exists, +1
+      await prisma.cartItem.update({
+        where: {
+          id: findCartItem.id,
+        },
+        data: {
+          quantity: findCartItem.quantity + 1,
+        },
+      });
+    } else {
+      // else create new one
+      await prisma.cartItem.create({
+        data: {
+          cartId: userCart.id,
+          productItemId: data.productItemId,
+          quantity: 1,
+          ingredients: { connect: data.ingredients?.map((id) => ({ id })) },
+        },
+      });
+    }
+  } catch (error) {
+    
   }
 }

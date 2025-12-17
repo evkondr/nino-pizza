@@ -88,8 +88,12 @@ export interface CartState {
   updateItemQuantity: (id: number, quantity: number) => Promise<void>;
 
   /* Запрос на добавление товара в корзину CreateCartItemValues*/
-  addCartItem: (values: CartDto) => Promise<void>;
+  addCartItem: (values: CreateCartItemValues) => Promise<void>;
 
   /* Запрос на удаление товара из корзины */
   removeCartItem: (id: number) => Promise<void>;
+}
+export interface CreateCartItemValues {
+  productItemId: number;
+  ingredients?: number[];
 }
