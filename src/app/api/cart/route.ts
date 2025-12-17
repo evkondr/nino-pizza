@@ -1,12 +1,13 @@
 import { findOrCreateCart } from "@/lib/find-or-create-cart";
 import { prisma } from "@/lib/prisma-client";
+import { updateCartTotalAmount } from "@/lib/update-cart-total-amount";
 import { CreateCartItemValues } from "@/types";
 import { NextRequest, NextResponse } from "next/server";
 
 //Get all cart items
 export async function GET(req:NextRequest) {
   try {
-    const cartToken = req.cookies.get('cartToken')?.value || '11111'; // unauthorized user token for cart
+    const cartToken = req.cookies.get('cartToken')?.value; // unauthorized user token for cart
     if (!cartToken) {
       return NextResponse.json({ totalAmount: 0, items: []})
     }
@@ -78,7 +79,12 @@ export async function POST(req:NextRequest) {
         },
       });
     }
+    const updatedUserCart = await updateCartTotalAmount(token);
+    const resp = NextResponse.json(updatedUserCart);
+    resp.cookies.set('cartToken', token);
+    return resp;
   } catch (error) {
-    
+    console.log('[CART_POST] Server error', error);
+    return NextResponse.json({ message: 'Не удалось создать корзину' }, { status: 500 });
   }
 }
