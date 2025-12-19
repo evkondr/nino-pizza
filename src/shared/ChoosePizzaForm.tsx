@@ -29,9 +29,7 @@ export default function ChoosePizzaForm({
   onSubmit,
   className,
 }:Props) {
-  const handleClickAdd = () => {
-    
-  };
+  
   const {
     size,
     type,
@@ -42,7 +40,7 @@ export default function ChoosePizzaForm({
     setType,
     addIngredient,
   } = usePizzaOptions(items);
-
+  
   const { totalPrice, textDetails } = getPizzaDetails(
     type,
     size,
@@ -50,6 +48,11 @@ export default function ChoosePizzaForm({
     ingredients,
     selectedIngredients,
   );
+  const handleClickAdd = () => {
+    if(currentItemId){
+      onSubmit(currentItemId, Array.from(selectedIngredients))
+    }
+  };
   return (
     <div className={cn(className, 'flex flex-1')}>
       <ProductImage imageUrl={imageUrl} size={size} />

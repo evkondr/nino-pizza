@@ -5,12 +5,13 @@ import Title from './Title';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
+import { Ingredient } from '@/generated/prisma';
 interface Props extends PropsWithClass {
   id: number;
   name: string;
   price: number;
   imageUrl: string;
-  ingredients: any[];
+  ingredients: Ingredient[];
 }
 const ProductCard = ({
   id,

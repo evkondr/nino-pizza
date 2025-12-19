@@ -22,7 +22,7 @@ const ChooseProductModal = ({ product, className}:Props) => {
           'p-0 w-[1060px] max-w-[1060px] min-h-[500px] bg-white overflow-hidden',
           className,
         )}>
-        <ProductForm product={product} onSubmit={() => router.back()} />
+        <ProductForm product={product} navigateBack={() => router.back()} />
       </DialogContent>
     </Dialog>
   )
