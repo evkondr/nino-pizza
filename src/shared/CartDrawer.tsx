@@ -32,6 +32,7 @@ const CartDrawer = ({ children }:PropsWithChildren) => {
             key={item.id}
             id={item.id}
             imageUrl={item.imageUrl}
+            disabled={item.disabled}
             details={getCartItemDetails(
               item.ingredients,
               item.pizzaType as PizzaType,

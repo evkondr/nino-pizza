@@ -4,6 +4,7 @@ import React from 'react'
 import ChoosePizzaForm from './ChoosePizzaForm';
 import ChooseProductForm from './ChooseProductForm';
 import { useCartStore } from '@/store/cart';
+import toast from 'react-hot-toast';
 interface Props {
   product: ProductsWithRelations;
   navigateBack?: VoidFunction;
@@ -21,11 +22,11 @@ const ProductForm = ({ product, navigateBack }:Props) => {
         ingredients,
       });
 
-      // toast.success(product.name + ' добавлена в корзину');
+      toast.success(product.name + ' добавлена в корзину');
 
       navigateBack?.();
     } catch (err) {
-      // toast.error('Не удалось добавить товар в корзину');
+      toast.error('Не удалось добавить товар в корзину');
       console.error(err);
     }
   };
