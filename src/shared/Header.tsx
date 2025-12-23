@@ -8,9 +8,9 @@ interface Props extends PropsWithClass {
   hasSearch?: boolean;
   hasCart?: boolean;
 }
-const Header = ({ className, hasSearch = true }:Props) => {
+const Header = ({ className, hasSearch = true, hasCart = true }:Props) => {
   return (
-    <header className={cn('', className)}>
+    <header className={cn('border-b', className)}>
       <Container className="flex items-center justify-between py-8">
         <Link href="/">
           <div className="flex items-center gap-4">
@@ -28,7 +28,7 @@ const Header = ({ className, hasSearch = true }:Props) => {
         )}
         <div className="flex items-center gap-3">
           <ProfileButton />
-          <CartButton />
+          {hasCart && <CartButton />}
         </div>
       </Container>
     </header>
