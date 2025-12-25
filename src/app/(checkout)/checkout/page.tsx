@@ -1,4 +1,5 @@
 import { Container, Title } from "@/shared";
+import CheckoutSidebar from "@/shared/CheckoutSidebar";
 import { WhiteBlock } from "@/shared/WhiteBlock";
 
 export default function CheckoutPage() {
@@ -24,7 +25,7 @@ export default function CheckoutPage() {
           </WhiteBlock>
         </div>
         <div className="w-[450px]">
-          sidebar
+          <CheckoutSidebar totalAmount={3000} />
         </div>
       </div>
     </Container>
