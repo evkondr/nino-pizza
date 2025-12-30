@@ -11,16 +11,14 @@ import { PizzaSize, PizzaType } from '@/lib/constants';
 import Title from './Title';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import { useCart } from '@/hooks/useCart';
 
 const CartDrawer = ({ children }:PropsWithChildren) => {
-  const { totalAmount, items, fetchCartItems, updateItemQuantity, removeCartItem } = useCartStore();
+  const { totalAmount, items, updateItemQuantity, removeCartItem } = useCart();
   const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
     const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
     updateItemQuantity(id, newQuantity);
   }
-  useEffect(() => {
-    fetchCartItems();
-  }, [fetchCartItems]);
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
@@ -51,7 +49,7 @@ const CartDrawer = ({ children }:PropsWithChildren) => {
         )}
          {totalAmount > 0 && (
           <>
-            <div className="-mx-6 mt-5 overflow-auto flex-1">
+            <div className="mt-5 overflow-auto flex-1">
                 {items.map((item) => (
                   <div key={item.id} className="mb-2">
                     <CartDrawerItem

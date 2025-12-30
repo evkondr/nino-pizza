@@ -29,15 +29,15 @@ const CheckoutItem = ({
         className,
       )}>
         <div className="flex items-center gap-5 flex-1">
-          <Image width={60} height={60} className={cn('w-[60px] h-[60px]', className)} src={imageUrl} alt={name} />;
+          <Image width={60} height={60} className="w-[60px] h-[60px]" src={imageUrl} alt={name} />
           <div>
-          <div className={cn('flex items-center justify-between', className)}>
+          <div className="flex items-center justify-between">
             <h2 className="text-lg font-bold flex-1 leading-6">{name}</h2>
           </div>
           {details && <p className="text-xs text-gray-400 w-[90%]">{details}</p>}
         </div>
         </div>
-        <h2 className={cn('font-bold', className)}>{price} ₽</h2>
+        <h2 className="font-bold">{price} ₽</h2>
         <div className="flex items-center gap-5 ml-20">
           <CountButton onClick={onClickCountButton} value={quantity} />
           <button type="button" onClick={onClickRemove}>

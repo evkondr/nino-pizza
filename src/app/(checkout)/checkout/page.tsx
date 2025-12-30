@@ -1,16 +1,13 @@
 'use client';
+import { useCart } from "@/hooks/useCart";
 import { Container, Title } from "@/shared";
 import CheckoutCart from "@/shared/CheckoutCart";
 import CheckoutSidebar from "@/shared/CheckoutSidebar";
 import { WhiteBlock } from "@/shared/WhiteBlock";
-import { useCartStore } from "@/store/cart";
-import { useEffect } from "react";
+
 
 export default function CheckoutPage() {
-  const { items,fetchCartItems } = useCartStore()
-  useEffect(() => {
-    fetchCartItems();
-  }, [fetchCartItems]);
+   const { items } = useCart()
   return (
     <Container className="mt-10">
       <Title text="Оформление заказа" className="font-extrabold mb-8 text-[36px]" />

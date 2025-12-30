@@ -21,11 +21,11 @@ const CartDrawerItem = ({ name, details, quantity, imageUrl, price, className, d
         <Image
           width={60}
           height={60}
-          className={cn('w-[60px] h-[60px]', className)}
+          className={cn('w-[60px] h-[60px]')}
           src={imageUrl} alt={name}
         />
         <div className="flex-1">
-          <div className={cn('flex items-center justify-between', className)}>
+          <div className={cn('flex items-center justify-between')}>
             <h2 className="text-lg font-bold flex-1 leading-6">{name}</h2>
           </div>
           {details && <p className="text-xs text-gray-400 w-[90%]">{details}</p>}
