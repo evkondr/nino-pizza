@@ -39,12 +39,10 @@ const CartDrawer = ({ children }:PropsWithChildren) => {
               Добавьте хотя бы одну пиццу, чтобы совершить заказ
             </p>
 
-            <SheetClose>
-              <Button className="w-56 h-12 text-base" size="lg">
-                <ArrowLeft className="w-5 mr-2" />
-                Вернуться назад
-              </Button>
-            </SheetClose>
+            <Button className="w-56 h-12 text-base" size="lg">
+              <ArrowLeft className="w-5 mr-2" />
+              Вернуться назад
+            </Button>
           </div>
         )}
          {totalAmount > 0 && (

@@ -3,7 +3,7 @@ import { CartItemProps, PropsWithClass } from '@/types';
 import { X } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react'
-import { CountButton } from './CountButton';
+import { CountButton } from '../CountButton';
 interface Props extends CartItemProps, PropsWithClass {
   onClickCountButton?: (type: 'plus' | 'minus') => void;
   onClickRemove?: () => void;

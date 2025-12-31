@@ -1,5 +1,5 @@
 import React from 'react'
-import { WhiteBlock } from './WhiteBlock'
+import { WhiteBlock } from '../WhiteBlock'
 import { CartStateItem, PropsWithClass } from '@/types';
 import CheckoutItem from './CheckoutItem';
 import { PizzaSize, PizzaType } from '@/lib/constants';
