@@ -4,14 +4,16 @@ import { Input } from '@/components/ui/input';
 import ErrorText from '../ErrorText';
 import { ClearButton } from '../ClearButton';
 import { useFormContext } from 'react-hook-form';
+import { Textarea } from '@/components/ui/textarea';
 
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+interface Props extends React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
+  textArea?: boolean;
   label?: string;
   className?: string;
 }
 
 const FormInput = ({
-  className, name = '', label, required, ...props 
+  className, name = '', textArea, label, required, ...props 
 }:Props) => {
   const {
     register,
@@ -32,7 +34,10 @@ const FormInput = ({
         </p>
       )}
        <div className="relative">
-        <Input className="h-12 text-md" {...props} {...register(name)} />
+        {textArea ?
+        (<Textarea className="h-12 text-md" {...props} {...register(name)} />)
+        :
+        (<Input className="h-12 text-md" {...props} {...register(name)} />)}
         {value && <ClearButton onClick={onClickClear} />}
       </div>
       {errorText && <ErrorText text={errorText} className="mt-2" />}
