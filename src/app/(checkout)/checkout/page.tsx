@@ -11,7 +11,7 @@ import { checkoutFormSchema, CheckoutFormValues } from "@/lib/schemas";
 
 
 export default function CheckoutPage() {
-  const { items, removeCartItem, updateItemQuantity } = useCart()
+  const { items, removeCartItem, updateItemQuantity, loading } = useCart()
   const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
     const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
     updateItemQuantity(id, newQuantity);
@@ -38,11 +38,11 @@ export default function CheckoutPage() {
           <div className="flex gap-10">
             <div className="flex flex-col gap-10 flex-1 mb-20">
               <CheckoutCart items={items} removeCartItem={removeCartItem}  onClickCountButton={onClickCountButton} />
-              <CheckoutPersonalForm />
-              <CheckoutAddressForm />
+              <CheckoutPersonalForm className={loading ? 'opacity-40 pointer-events-none' : ''} />
+              <CheckoutAddressForm className={loading ? 'opacity-40 pointer-events-none' : ''} />
             </div>
             <div className="w-[450px]">
-              <CheckoutSidebar totalAmount={3000} />
+              <CheckoutSidebar totalAmount={3000} loading={loading} />
             </div>
           </div>
         </form>

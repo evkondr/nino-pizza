@@ -4,11 +4,12 @@ import FormInput from '../form/FormInput'
 import AddressInput from '../form/AddressInput'
 import { Controller, useFormContext } from 'react-hook-form'
 import ErrorText from '../ErrorText'
+import { PropsWithClass } from '@/types'
 
-const CheckoutAddressForm = () => {
+const CheckoutAddressForm = ({ className }:PropsWithClass) => {
   const { control } = useFormContext();
   return (
-    <WhiteBlock title="3. Адрес доставки">
+    <WhiteBlock title="3. Адрес доставки" className={className} >
       <div className="flex flex-col gap-5">
         <Controller 
           control={control}
