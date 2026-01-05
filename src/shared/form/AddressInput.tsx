@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { AddressSuggestions } from 'react-dadata';
 import 'react-dadata/dist/react-dadata.css';
@@ -10,8 +11,10 @@ const AddressInput = ({
 }:Props) => {
   return (
     <AddressSuggestions
-      token="token"
+      token={process.env.NEXT_PUBLIC_DADATA_KEY as string}
       onChange={(data) => onChange?.(data?.value)}
+      containerClassName='relative'
+      suggestionsClassName='overflow-y-scroll absolute z-50 bg-white w-full max-h-30'
     />
   )
 }
