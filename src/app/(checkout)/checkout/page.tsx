@@ -37,7 +37,7 @@ export default function CheckoutPage() {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex gap-10">
             <div className="flex flex-col gap-10 flex-1 mb-20">
-              <CheckoutCart items={items} removeCartItem={removeCartItem}  onClickCountButton={onClickCountButton} />
+              <CheckoutCart items={items} removeCartItem={removeCartItem}  onClickCountButton={onClickCountButton} loading={loading} />
               <CheckoutPersonalForm className={loading ? 'opacity-40 pointer-events-none' : ''} />
               <CheckoutAddressForm className={loading ? 'opacity-40 pointer-events-none' : ''} />
             </div>
