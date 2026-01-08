@@ -44,7 +44,7 @@ const CheckoutSidebar = ({ className, totalAmount, loading }:Props) => {
         </div>
       </CheckoutItemDetails>
       <Button
-        // loading={loading}
+        loading={loading}
         type="submit"
         className="w-full h-14 rounded-2xl mt-6 text-base font-bold">
         Перейти к оплате

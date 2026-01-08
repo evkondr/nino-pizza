@@ -1,11 +1,10 @@
 'use client';
 import { Button } from '@/components/ui/button'
-import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
-import React, { PropsWithChildren, useEffect } from 'react'
+import React, { PropsWithChildren } from 'react'
 import CartDrawerItem from './CartDrawerItem'
-import { useCartStore } from '@/store/cart';
 import { getCartItemDetails } from '@/lib/get-cart-item-details';
 import { PizzaSize, PizzaType } from '@/lib/constants';
 import Title from './Title';
