@@ -6,6 +6,8 @@ import { CheckoutFormValues } from "./schemas";
 import { cookies } from "next/headers";
 import { sendEmail } from "./sendEmail";
 import PayOrderTemplate from "@/shared/email-templates/PayOrderTemplate";
+import { createPayment } from "./create-payment";
+import { isAxiosError } from "axios";
 
 export async function createOrder(data: CheckoutFormValues) {
   try {
@@ -66,7 +68,25 @@ export async function createOrder(data: CheckoutFormValues) {
     //     cartId: userCart.id
     //   }
     // });
-    const paymentUrl = 'https://ya.ru';
+    const paymentData = await createPayment({
+      amount: order.totalAmount,
+      orderId: order.id,
+      description: 'Оплата заказа №' + order.id,
+    });
+    if (!paymentData) {
+      throw new Error(
+        'Payment failed',
+      );
+    }
+    await prisma.order.update({
+      where: {
+        id: order.id
+      },
+      data: {
+        paymentId: paymentData.id,
+      }
+    })
+    const paymentUrl = paymentData.confirmation.confirmation_url;
     //Send email
     await sendEmail(
       data.email,
@@ -79,6 +99,9 @@ export async function createOrder(data: CheckoutFormValues) {
     );
     return paymentUrl;
   } catch (error) {
-    console.log(error)
+    if(isAxiosError(error)){
+      return console.log(error.response)
+    }
+    console.log(error);
   }
 }
