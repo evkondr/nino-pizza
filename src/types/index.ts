@@ -75,6 +75,15 @@ export type CartDto = Prisma.CartGetPayload<{
     }
   }
 }>
+export type CartItemDto = Prisma.CartItemGetPayload<{
+  include: {
+    productItem: {
+      include: {
+        product: true,
+      },
+    },
+  }
+}>
 export interface CartState {
   loading: boolean;
   error: boolean;
