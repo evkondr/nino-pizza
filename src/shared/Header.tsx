@@ -1,14 +1,29 @@
+'use client';
 import { cn } from '../lib/utils'
 import { CartButton, Container, ProfileButton, SearchInput } from '.';
 import Link from 'next/link';
 import Image from 'next/image';
 import { PropsWithClass } from '@/types';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 
 interface Props extends PropsWithClass {
   hasSearch?: boolean;
   hasCart?: boolean;
 }
 const Header = ({ className, hasSearch = true, hasCart = true }:Props) => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  useEffect(() => {
+
+    if (searchParams.has('paid')) {
+      router.replace('/');
+      toast.success('Заказ успешно оплачен! Информация отправлена на почту.', {
+        duration: 3000,
+      });
+    }
+  }, [])
   return (
     <header className={cn('border-b', className)}>
       <Container className="flex items-center justify-between py-8">
