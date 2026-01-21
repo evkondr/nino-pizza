@@ -1,15 +1,61 @@
+import { Button } from '@/components/ui/button';
+import { TFormLoginValues } from '@/lib/schemas';
+import FormInput from '@/shared/form/FormInput';
+import Title from '@/shared/Title';
+import { signIn } from 'next-auth/react';
+import Image from 'next/image';
 import React from 'react'
-import { useForm } from 'react-hook-form'
-
-const LoginForm = () => {
-  const form = useForm({
+import { FormProvider, useForm } from 'react-hook-form'
+import toast from 'react-hot-toast';
+interface Props {
+  onClose?: VoidFunction;
+}
+const LoginForm = ({ onClose }:Props) => {
+  const form = useForm<TFormLoginValues>({
     defaultValues: {
       email: '',
       password: '',
     }
   });
+  const onSubmit = async (data:TFormLoginValues) => {
+    try {
+      const response = await signIn('credentials', {
+        ...data,
+        redirect: false,
+      })
+      if (!response?.ok) {
+        throw Error();
+      }
+      toast.success('Вы успешно вошли в аккаунт', {
+        icon: '✅',
+      });
+      onClose?.();
+    } catch (error) {
+      console.error('Error [LOGIN]', error);
+      toast.error('Не удалось войти в аккаунт', {
+        icon: '❌',
+      });
+    }
+  }
   return (
-    <div>LoginForm</div>
+    <FormProvider {...form}>
+      <form className="flex flex-col gap-5" onSubmit={form.handleSubmit(onSubmit)}>
+        <div className="flex justify-between items-center">
+          <div className="mr-2">
+            <Title text="Вход в аккаунт" size="md" className="font-bold" />
+            <p className="text-gray-400">Введите свою почту, чтобы войти в свой аккаунт</p>
+          </div>
+          <Image src="/phone-icon.png" alt="phone-icon" width={60} height={60} />
+        </div>
+
+        <FormInput name="email" label="E-Mail" required />
+        <FormInput name="password" label="Пароль" type="password" required />
+
+        <Button loading={form.formState.isSubmitting} className="h-12 text-base" type="submit">
+          Войти
+        </Button>
+      </form>
+    </FormProvider>
   )
 }
 

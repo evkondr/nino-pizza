@@ -7,7 +7,7 @@ import { PropsWithClass } from '@/types';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import AuthModal from './modals/AuthModal';
+import AuthModal from './modals/auth-modal/AuthModal';
 
 interface Props extends PropsWithClass {
   hasSearch?: boolean;

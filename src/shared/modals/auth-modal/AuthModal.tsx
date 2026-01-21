@@ -3,6 +3,7 @@ import { Dialog, DialogContent } from '@/components/ui/dialog'
 import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import React from 'react'
+import LoginForm from './LoginForm';
 
 interface Props {
   open: boolean;
@@ -18,6 +19,7 @@ const AuthModal = ({
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="w-[450px] bg-white p-10">
+        <LoginForm />
         <div className="flex gap-2">
           <Button
             variant="secondary"
