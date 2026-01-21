@@ -5,18 +5,19 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { PropsWithClass } from '@/types';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import AuthModal from './modals/AuthModal';
 
 interface Props extends PropsWithClass {
   hasSearch?: boolean;
   hasCart?: boolean;
 }
 const Header = ({ className, hasSearch = true, hasCart = true }:Props) => {
+  const [ openAuthModal, setOpenAuthModal ] = useState(false);
   const searchParams = useSearchParams();
   const router = useRouter();
   useEffect(() => {
-
     if (searchParams.has('paid')) {
       router.replace('/');
       toast.success('Заказ успешно оплачен! Информация отправлена на почту.', {
@@ -42,7 +43,8 @@ const Header = ({ className, hasSearch = true, hasCart = true }:Props) => {
           </div>
         )}
         <div className="flex items-center gap-3">
-          <ProfileButton />
+          <AuthModal open={openAuthModal} onClose={() => setOpenAuthModal(false)} />
+          <ProfileButton onClickSignIn={() => setOpenAuthModal(true)}  />
           {hasCart && <CartButton />}
         </div>
       </Container>
