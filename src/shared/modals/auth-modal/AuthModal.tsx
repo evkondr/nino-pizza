@@ -13,13 +13,22 @@ const AuthModal = ({
   open,
   onClose
 }:Props) => {
+  const [type, setType] = React.useState<'login' | 'register'>('login');
+
+  const onSwitchType = () => {
+    setType(type === 'login' ? 'register' : 'login');
+  };
   const handleClose = () => {
     onClose()
   }
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="w-[450px] bg-white p-10">
-        <LoginForm />
+        {type === 'login' ? (
+          <LoginForm onClose={handleClose} />
+        ) : (
+          <div></div>
+        )}
         <div className="flex gap-2">
           <Button
             variant="secondary"
@@ -60,6 +69,9 @@ const AuthModal = ({
             Google
           </Button>
         </div>
+        <Button variant="outline" onClick={onSwitchType} type="button" className="h-12">
+          {type !== 'login' ? 'Войти' : 'Регистрация'}
+        </Button>
       </DialogContent>
     </Dialog>
   )
