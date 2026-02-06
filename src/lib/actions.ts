@@ -1,6 +1,6 @@
 'use server'
 
-import { OrderStatus } from "@/generated/prisma";
+import { OrderStatus, Prisma } from "@/generated/prisma";
 import { prisma } from "./prisma-client";
 import { CheckoutFormValues } from "./schemas";
 import { cookies } from "next/headers";
@@ -8,6 +8,8 @@ import { sendEmail } from "./sendEmail";
 import PayOrderTemplate from "@/shared/email-templates/PayOrderTemplate";
 import { createPayment } from "./create-payment";
 import { isAxiosError } from "axios";
+import { getUserSession } from "./get-user-session";
+import { hashSync } from "bcrypt";
 
 export async function createOrder(data: CheckoutFormValues) {
   try {
@@ -54,20 +56,20 @@ export async function createOrder(data: CheckoutFormValues) {
         items: JSON.stringify(userCart.items),
       },
     });
-    //Clear cart
-    // await prisma.cart.update({
-    //   where: {
-    //     id: userCart.id
-    //   },
-    //   data: {
-    //     totalAmount: 0
-    //   }
-    // });
-    // await prisma.cartItem.deleteMany({
-    //   where: {
-    //     cartId: userCart.id
-    //   }
-    // });
+    // Clear cart
+    await prisma.cart.update({
+      where: {
+        id: userCart.id
+      },
+      data: {
+        totalAmount: 0
+      }
+    });
+    await prisma.cartItem.deleteMany({
+      where: {
+        cartId: userCart.id
+      }
+    });
     const paymentData = await createPayment({
       amount: order.totalAmount,
       orderId: order.id,
@@ -103,5 +105,33 @@ export async function createOrder(data: CheckoutFormValues) {
       return console.log(error.response)
     }
     console.log(error);
+  }
+}
+export const updateUserAction = async (body: Prisma.UserCreateInput) => {
+  try {
+    const currentUser = await getUserSession();
+    if (!currentUser) {
+      throw new Error(
+        'Пользователь не найден',
+      );
+    };
+    const findUser = await prisma.user.findFirst({
+      where: {
+        id: Number(currentUser.id),
+      },
+    });
+    await prisma.user.update({
+      where: {
+        id: Number(currentUser.id)
+      },
+      data: {
+        fullName: body.fullName,
+        email: body.email,
+        password: body.password ? hashSync(body.password as string, 10): findUser?.password,
+      }
+    });
+  } catch (error) {
+    console.log('Error [UPDATE_USER]', error);
+    throw error;
   }
 }
