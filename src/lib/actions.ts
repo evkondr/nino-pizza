@@ -107,7 +107,7 @@ export async function createOrder(data: CheckoutFormValues) {
     console.log(error);
   }
 }
-export const updateUserAction = async (body: Prisma.UserCreateInput) => {
+export const updateUserAction = async (body: Prisma.UserUpdateInput) => {
   try {
     const currentUser = await getUserSession();
     if (!currentUser) {
