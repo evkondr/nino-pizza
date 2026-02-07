@@ -17,10 +17,18 @@ const Header = ({ className, hasSearch = true, hasCart = true }:Props) => {
   const [ openAuthModal, setOpenAuthModal ] = useState(false);
   const searchParams = useSearchParams();
   const router = useRouter();
+  
   useEffect(() => {
+    let toastMessage = '';
     if (searchParams.has('paid')) {
+      toastMessage = 'Заказ успешно оплачен! Информация отправлена на почту.';
+    }
+    if (searchParams.has('verified')) {
+      toastMessage = 'Почта успешно подтверждена!';
+    }
+    if(toastMessage) {
       router.replace('/');
-      toast.success('Заказ успешно оплачен! Информация отправлена на почту.', {
+      toast.success(toastMessage, {
         duration: 3000,
       });
     }
