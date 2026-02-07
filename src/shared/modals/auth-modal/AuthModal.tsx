@@ -4,6 +4,7 @@ import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import React from 'react';
 import LoginForm from './LoginForm';
+import RegisterForm from '@/shared/RegisterForm';
 
 interface Props {
   open: boolean;
@@ -27,7 +28,7 @@ const AuthModal = ({
         {type === 'login' ? (
           <LoginForm onClose={handleClose} />
         ) : (
-          <div></div>
+          <RegisterForm onClose={handleClose} />
         )}
         <div className="flex gap-2">
           <Button
