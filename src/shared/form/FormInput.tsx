@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import RequiredSymbol from '../RequiredSymbol';
 import { Input } from '@/components/ui/input';
 import ErrorText from '../ErrorText';
@@ -42,7 +42,7 @@ const FormInput = ({
       </div>
       {errorText && <ErrorText text={errorText} className="mt-2" />}
     </div>
-  )
-}
+  );
+};
 
-export default FormInput
+export default FormInput;

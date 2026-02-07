@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 interface Props {
   orderId: number
@@ -20,7 +20,7 @@ const PayOrderTemplate = ({
         Перейдите по <a href={paymentUrl}>ссылке</a> для оплаты заказа
       </p>
     </div>
-  )
-}
+  );
+};
 
 export default PayOrderTemplate;

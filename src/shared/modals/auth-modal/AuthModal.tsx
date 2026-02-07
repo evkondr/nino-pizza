@@ -1,8 +1,8 @@
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent } from '@/components/ui/dialog'
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { signIn } from 'next-auth/react';
 import Image from 'next/image';
-import React from 'react'
+import React from 'react';
 import LoginForm from './LoginForm';
 
 interface Props {
@@ -19,8 +19,8 @@ const AuthModal = ({
     setType(type === 'login' ? 'register' : 'login');
   };
   const handleClose = () => {
-    onClose()
-  }
+    onClose();
+  };
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="w-[450px] bg-white p-10">
@@ -74,7 +74,7 @@ const AuthModal = ({
         </Button>
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};
 
-export default AuthModal
+export default AuthModal;

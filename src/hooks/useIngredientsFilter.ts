@@ -1,6 +1,6 @@
-import { Ingredient } from "@/generated/prisma"
+import { Ingredient } from "@/generated/prisma";
 import { apiClient } from "@/services/api-client";
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 const useIngredientsFilter = () => {
   const [ ingredients, setIngredients ] = useState<Ingredient[]>([]);
@@ -24,6 +24,6 @@ const useIngredientsFilter = () => {
     ingredients,
     loading,
   };
-}
+};
 
 export default useIngredientsFilter;

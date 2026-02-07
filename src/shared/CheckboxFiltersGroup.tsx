@@ -1,7 +1,7 @@
-'use client'
+'use client';
 import { Input } from '@/components/ui/input';
 import { FilterCheckBoxProps, PropsWithClass } from '@/types';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import FilterCheckbox from './FilterCheckbox';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -51,7 +51,7 @@ const CheckboxFiltersGroup = ({
         ))}
         <Skeleton className="w-28 h-6 mb-4 rounded-xl" />
       </div>
-    )
+    );
   }
   return (
     <div className={className}>
@@ -84,7 +84,7 @@ const CheckboxFiltersGroup = ({
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default CheckboxFiltersGroup
+export default CheckboxFiltersGroup;

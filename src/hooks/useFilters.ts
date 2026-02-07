@@ -10,7 +10,7 @@ interface ReturnProps extends Filters {
   setSelectedIngredients: (value: string) => void;
 }
 export function useFilters():ReturnProps {
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
   const [selectedIngredients, { toggle: toggleIngredients }] = useSet(
     new Set<string>(searchParams.get('ingredients')?.split(',') || new Array<string>())
   );
@@ -44,5 +44,5 @@ export function useFilters():ReturnProps {
       setSizes: toggleSizes,
       setSelectedIngredients: toggleIngredients,
     }
-  ), [pizzaTypes, prices, selectedIngredients, sizes, toggleIngredients, togglePizzaTypes, toggleSizes]) 
+  ), [pizzaTypes, prices, selectedIngredients, sizes, toggleIngredients, togglePizzaTypes, toggleSizes]); 
 }

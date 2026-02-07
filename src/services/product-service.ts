@@ -1,5 +1,5 @@
-import { Product } from "@/generated/prisma"
-import { httpInstance } from "@/lib/http-instance"
+import { Product } from "@/generated/prisma";
+import { httpInstance } from "@/lib/http-instance";
 import { ApiRoutes } from "@/types";
 
 export const search = async (query:string) => {
@@ -9,4 +9,4 @@ export const search = async (query:string) => {
     }
   });
   return data;
-}
+};

@@ -1,7 +1,7 @@
-import { PropsWithClass } from '@/types'
-import React from 'react'
-import { WhiteBlock } from '../WhiteBlock'
-import FormInput from '../form/FormInput'
+import { PropsWithClass } from '@/types';
+import React from 'react';
+import { WhiteBlock } from '../WhiteBlock';
+import FormInput from '../form/FormInput';
 
 const CheckoutPersonalForm = ({ className}:PropsWithClass) => {
   return (
@@ -13,7 +13,7 @@ const CheckoutPersonalForm = ({ className}:PropsWithClass) => {
         <FormInput name="phone" className="text-base" placeholder="Телефон" />
       </div>
     </WhiteBlock>
-  )
-}
+  );
+};
 
-export default CheckoutPersonalForm
+export default CheckoutPersonalForm;

@@ -1,8 +1,8 @@
-'use client'
+'use client';
 import { Product } from "@/generated/prisma";
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 import { apiClient } from "@/services/api-client";
-import { PropsWithClass } from "@/types"
+import { PropsWithClass } from "@/types";
 import { Search } from 'lucide-react';
 import Image from "next/image";
 import Link from "next/link";
@@ -14,8 +14,8 @@ const SearchInput = ({ className }:PropsWithClass) => {
   const [ searchQuery, setSearchQuery ] = useState<string>('');
   const [ products, setProducts ] = useState<Product[]>([]);
   useDebounce(() => {
-    apiClient.productsService.search(searchQuery).then((result) => setProducts(result))
-  }, 300, [searchQuery])
+    apiClient.productsService.search(searchQuery).then((result) => setProducts(result));
+  }, 300, [searchQuery]);
   return (
     <>
       {focused && (<div className="fixed top-0 left-0 right-0 bottom-0 bg-black/50 z-30" />)}
@@ -51,7 +51,7 @@ const SearchInput = ({ className }:PropsWithClass) => {
             </div>)}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default SearchInput
+export default SearchInput;

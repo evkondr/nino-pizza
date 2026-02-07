@@ -6,7 +6,7 @@ interface Props {
   params: Promise<{ id: string }>
 }
 const ProductModalPage = async ({ params }: Props) => {
-  const {id} = await params
+  const {id} = await params;
   const product = await prisma.product.findFirst({
     where: {
       id: Number(id),
@@ -15,9 +15,9 @@ const ProductModalPage = async ({ params }: Props) => {
       ingredients: true,
       items: true,
     },
-  })
+  });
   return (
     <ChooseProductModal product={product as ProductsWithRelations} />
   );
-}
+};
 export default ProductModalPage;

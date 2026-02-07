@@ -11,17 +11,17 @@ import { checkoutFormSchema, CheckoutFormValues } from "@/lib/schemas";
 import { useState } from "react";
 import { createOrder } from "@/lib/actions";
 import toast from "react-hot-toast";
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 
 export default function CheckoutPage() {
   const { items, removeCartItem, updateItemQuantity, loading } = useCart();
   const [submitting, setSubmitting] = useState<boolean>(false);
-  const router = useRouter()
+  const router = useRouter();
   const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
     const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
     updateItemQuantity(id, newQuantity);
-  }
+  };
   const form = useForm<CheckoutFormValues>({
     resolver: zodResolver(checkoutFormSchema),
     defaultValues: {
@@ -41,7 +41,7 @@ export default function CheckoutPage() {
         icon: '✅',
       });
       if (url) {
-        router.push(url)
+        router.push(url);
       }
     } catch (err) {
       console.log(err);
@@ -50,7 +50,7 @@ export default function CheckoutPage() {
         icon: '❌',
       });
     }
-  }
+  };
   return (
     <Container className="mt-10">
       <Title text="Оформление заказа" className="font-extrabold mb-8 text-[36px]" />

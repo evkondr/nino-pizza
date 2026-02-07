@@ -25,7 +25,7 @@ const ChooseProductModal = ({ product, className}:Props) => {
         <ProductForm product={product} navigateBack={() => router.back()} />
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};
 
-export default ChooseProductModal
+export default ChooseProductModal;

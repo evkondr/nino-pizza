@@ -1,6 +1,6 @@
 import { PropsWithClass } from '@/types';
 import Image from 'next/image';
-import React from 'react'
+import React from 'react';
 import Title from './Title';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -43,7 +43,7 @@ const ProductCard = ({
         </div>
       </Link>
     </div>
-  )
-}
+  );
+};
 
-export default ProductCard
+export default ProductCard;

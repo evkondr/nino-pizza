@@ -13,4 +13,4 @@ export const getPizzaDetails = (
   const textDetails = `${size} см, ${mapPizzaType[type]} пицца`;
 
   return { totalPrice, textDetails };
-}
+};

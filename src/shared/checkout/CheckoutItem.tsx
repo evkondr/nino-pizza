@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 import { CartItemProps, PropsWithClass } from '@/types';
 import { X } from 'lucide-react';
 import Image from 'next/image';
-import React from 'react'
+import React from 'react';
 import { CountButton } from '../CountButton';
 interface Props extends CartItemProps, PropsWithClass {
   onClickCountButton?: (type: 'plus' | 'minus') => void;
@@ -45,7 +45,7 @@ const CheckoutItem = ({
           </button>
       </div>
       </div>
-  )
-}
+  );
+};
 
-export default CheckoutItem
+export default CheckoutItem;

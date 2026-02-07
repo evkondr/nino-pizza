@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 import { PropsWithClass } from '@/types';
 import { CircleCheck } from 'lucide-react';
 import Image from 'next/image';
-import React from 'react'
+import React from 'react';
 
 interface Props extends PropsWithClass{
   imageUrl: string;
@@ -33,7 +33,7 @@ const IngredientsItem = ({
       <span className="text-xs mb-1">{name}</span>
       <span className="font-bold">{price} ₽</span>
     </div>
-  )
-}
+  );
+};
 
-export default IngredientsItem
+export default IngredientsItem;

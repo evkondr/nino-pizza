@@ -1,18 +1,22 @@
-'use client'
+'use client';
 import { User } from "@/generated/prisma";
-import Container from "./Container"
-import Title from "./Title"
+import Container from "./Container";
+import Title from "./Title";
 import { FormProvider, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import FormInput from "./form/FormInput";
 import { signOut } from "next-auth/react";
-import { TFormRegisterValues } from "@/lib/schemas";
+import { formRegisterSchema, TFormRegisterValues } from "@/lib/schemas";
+import { updateUserAction } from "@/lib/actions";
+import toast from "react-hot-toast";
+import { zodResolver } from '@hookform/resolvers/zod';
 
 interface Props {
   data: User;
 }
 const ProfileForm = ({ data }:Props) => {
   const form = useForm({
+    resolver: zodResolver(formRegisterSchema),
     defaultValues: {
       fullName: data.fullName,
       email: data.email,
@@ -21,7 +25,20 @@ const ProfileForm = ({ data }:Props) => {
     }
   });
   const onSubmit = async (data: TFormRegisterValues) => {
-    
+    try {
+      await updateUserAction({
+        email: data.email,
+        fullName: data.fullName,
+        password: data.password,
+      });
+      toast.error('Данные обновлены 📝', {
+        icon: '✅',
+      });
+    } catch (error) {
+      return toast.error('Ошибка при обновлении данных', {
+        icon: '❌',
+      });
+    }
   };
   const onClickSignOut = () => {
     signOut({
@@ -55,7 +72,7 @@ const ProfileForm = ({ data }:Props) => {
         </form>
       </FormProvider>
     </Container>
-  )
-}
+  );
+};
 
-export default ProfileForm
+export default ProfileForm;

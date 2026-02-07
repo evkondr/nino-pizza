@@ -1,6 +1,6 @@
-'use client'
-import { Button } from "../components/ui/button"
-import { cn } from "../lib/utils"
+'use client';
+import { Button } from "../components/ui/button";
+import { cn } from "../lib/utils";
 import { ArrowRight, ShoppingCart } from 'lucide-react';
 import CartDrawer from "./CartDrawer";
 import { useCartStore } from "@/store/cart";
@@ -22,7 +22,7 @@ const CartButton = () => {
         />
       </Button>
     </CartDrawer>
-  )
-}
+  );
+};
 
-export default CartButton
+export default CartButton;

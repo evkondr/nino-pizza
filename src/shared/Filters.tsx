@@ -1,11 +1,11 @@
-'use client'
-import { PropsWithClass } from "@/types"
-import { FilterCheckbox, RangeSlider, Title } from "."
-import { Input } from "@/components/ui/input"
-import CheckboxFiltersGroup from "./CheckboxFiltersGroup"
-import useIngredientsFilter from "@/hooks/useIngredientsFilter"
-import { useFilters } from "@/hooks/useFilters"
-import useFilterQuery from "@/hooks/useFilterQuery"
+'use client';
+import { PropsWithClass } from "@/types";
+import { FilterCheckbox, RangeSlider, Title } from ".";
+import { Input } from "@/components/ui/input";
+import CheckboxFiltersGroup from "./CheckboxFiltersGroup";
+import useIngredientsFilter from "@/hooks/useIngredientsFilter";
+import { useFilters } from "@/hooks/useFilters";
+import useFilterQuery from "@/hooks/useFilterQuery";
 
 const Filters = ({ className }:PropsWithClass) => {
   const { ingredients, loading } = useIngredientsFilter();
@@ -14,7 +14,7 @@ const Filters = ({ className }:PropsWithClass) => {
   const updatePrices = (pricesRange:[number, number]) => {
     filters.setPrices('from', pricesRange[0]);
     filters.setPrices('to', pricesRange[1]);
-  }
+  };
   useFilterQuery(filters); 
   return (
     <div className={className}>
@@ -72,7 +72,7 @@ const Filters = ({ className }:PropsWithClass) => {
         onClickCheckbox={filters.setSelectedIngredients}
       />
     </div>
-  )
-}
+  );
+};
 
-export default Filters
+export default Filters;

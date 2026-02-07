@@ -33,6 +33,6 @@ const Title = ({
     { className: clsx(mapClassNameBySize[size], className)},
     text
   );
-}
+};
 
-export default Title
+export default Title;

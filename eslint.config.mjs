@@ -13,6 +13,12 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  {
+    rules: {
+      "semi": ["warn", "always"],
+      "semi-spacing": ["warn", { "before": false, "after": true }]
+    }
+  }
 ]);
 
 export default eslintConfig;

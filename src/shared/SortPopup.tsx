@@ -12,7 +12,7 @@ const SortPopup = ({ className }:PropsWithClass) => {
       <b>Сортировка:</b>
       <b className="text-primary">популярное</b>
     </div>
-  )
-}
+  );
+};
 
-export default SortPopup
+export default SortPopup;

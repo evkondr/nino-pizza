@@ -6,13 +6,13 @@ interface Params {
 }
 export async function PATCH(req:NextRequest, { params }:Params) {
   try {
-    const { id } = await params
+    const { id } = await params;
     //Getting data from request body
-    const data = (await req.json()) as { quantity: number}
+    const data = (await req.json()) as { quantity: number};
     //Getting cart token from cookie
     const cartToken = req.cookies.get('cartToken')?.value || '11111';
     if (!cartToken) {
-      return NextResponse.json({ error: 'Токен не найден'}, { status: 403})
+      return NextResponse.json({ error: 'Токен не найден'}, { status: 403});
     };
     const cartItem = await prisma.cartItem.findFirst({
       where: {
@@ -29,7 +29,7 @@ export async function PATCH(req:NextRequest, { params }:Params) {
       data: {
         quantity: data.quantity
       }
-    })
+    });
     const updatedUserCart = await updateCartTotalAmount(cartToken);
 
     return NextResponse.json(updatedUserCart);
@@ -40,11 +40,11 @@ export async function PATCH(req:NextRequest, { params }:Params) {
 }
 export async function DELETE(req:NextRequest, { params }:Params) {
   try {
-    const { id } = await params
+    const { id } = await params;
     //Getting cart token from cookie
     const cartToken = req.cookies.get('cartToken')?.value || '11111';
     if (!cartToken) {
-      return NextResponse.json({ error: 'Токен не найден'}, { status: 403})
+      return NextResponse.json({ error: 'Токен не найден'}, { status: 403});
     };
 
     const cartItem = await prisma.cartItem.findFirst({

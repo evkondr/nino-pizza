@@ -1,4 +1,4 @@
-'use server'
+'use server';
 
 import { OrderStatus, Prisma } from "@/generated/prisma";
 import { prisma } from "./prisma-client";
@@ -87,7 +87,7 @@ export async function createOrder(data: CheckoutFormValues) {
       data: {
         paymentId: paymentData.id,
       }
-    })
+    });
     const paymentUrl = paymentData.confirmation.confirmation_url;
     //Send email
     await sendEmail(
@@ -102,7 +102,7 @@ export async function createOrder(data: CheckoutFormValues) {
     return paymentUrl;
   } catch (error) {
     if(isAxiosError(error)){
-      return console.log(error.response)
+      return console.log(error.response);
     }
     console.log(error);
   }
@@ -134,4 +134,26 @@ export const updateUserAction = async (body: Prisma.UserUpdateInput) => {
     console.log('Error [UPDATE_USER]', error);
     throw error;
   }
-}
+};
+export const registerUserAction = async (body: Prisma.UserCreateInput) => {
+  try {
+    const isAlreadyExist = await prisma.user.findFirst({
+      where: {
+        email: body.email,
+      }
+    });
+    if(isAlreadyExist) {
+      if(isAlreadyExist.verified) {
+        throw new Error(
+          'Необходимо подтвердить почту',
+        );
+      }
+      throw new Error(
+        'Пользователь с таким email уже существует',
+      );
+    }
+  } catch (error) {
+    console.log('Error [CREATE_USER]', error);
+    throw error;
+  }
+};

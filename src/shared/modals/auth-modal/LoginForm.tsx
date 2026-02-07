@@ -4,8 +4,8 @@ import FormInput from '@/shared/form/FormInput';
 import Title from '@/shared/Title';
 import { signIn } from 'next-auth/react';
 import Image from 'next/image';
-import React from 'react'
-import { FormProvider, useForm } from 'react-hook-form'
+import React from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 interface Props {
   onClose?: VoidFunction;
@@ -22,7 +22,7 @@ const LoginForm = ({ onClose }:Props) => {
       const response = await signIn('credentials', {
         ...data,
         redirect: false,
-      })
+      });
       if (!response?.ok) {
         throw Error();
       }
@@ -36,7 +36,7 @@ const LoginForm = ({ onClose }:Props) => {
         icon: '❌',
       });
     }
-  }
+  };
   return (
     <FormProvider {...form}>
       <form className="flex flex-col gap-5" onSubmit={form.handleSubmit(onSubmit)}>
@@ -56,7 +56,7 @@ const LoginForm = ({ onClose }:Props) => {
         </Button>
       </form>
     </FormProvider>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;

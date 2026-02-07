@@ -1,7 +1,7 @@
-import { cn } from '@/lib/utils'
-import { CartItemProps, PropsWithClass } from '@/types'
-import { Trash2Icon } from 'lucide-react'
-import Image from 'next/image'
+import { cn } from '@/lib/utils';
+import { CartItemProps, PropsWithClass } from '@/types';
+import { Trash2Icon } from 'lucide-react';
+import Image from 'next/image';
 import { CountButton } from './CountButton';
 
 interface CartDrawerItemProps extends CartItemProps, PropsWithClass {
@@ -44,7 +44,7 @@ const CartDrawerItem = ({ name, details, quantity, imageUrl, price, className, d
           </div>
         </div>
       </div>
-  )
-}
+  );
+};
 
-export default CartDrawerItem
+export default CartDrawerItem;

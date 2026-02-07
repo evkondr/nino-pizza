@@ -1,5 +1,5 @@
 'use client';
-import { cn } from '../lib/utils'
+import { cn } from '../lib/utils';
 import { CartButton, Container, ProfileButton, SearchInput } from '.';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -24,7 +24,7 @@ const Header = ({ className, hasSearch = true, hasCart = true }:Props) => {
         duration: 3000,
       });
     }
-  }, [])
+  }, []);
   return (
     <header className={cn('border-b', className)}>
       <Container className="flex items-center justify-between py-8">
@@ -49,7 +49,7 @@ const Header = ({ className, hasSearch = true, hasCart = true }:Props) => {
         </div>
       </Container>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

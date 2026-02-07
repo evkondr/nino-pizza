@@ -1,4 +1,4 @@
-import { Filters } from "@/types"
+import { Filters } from "@/types";
 import { useRouter } from "next/navigation";
 import qs from "qs";
 import { useRef, useEffect } from "react";
@@ -14,7 +14,7 @@ const useFilterQuery = (filters: Filters) => {
         pizzaTypes: Array.from(filters.pizzaTypes),
         sizes: Array.from(filters.sizes),
         ingredients: Array.from(filters.selectedIngredients),
-      }
+      };
       const query = qs.stringify(params, {
         arrayFormat: 'comma',
       });
@@ -23,6 +23,6 @@ const useFilterQuery = (filters: Filters) => {
       });
     }
     isMounted.current = true;
-  }, [filters, router])
-}
-export default useFilterQuery
+  }, [filters, router]);
+};
+export default useFilterQuery;

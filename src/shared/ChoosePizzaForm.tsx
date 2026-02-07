@@ -50,7 +50,7 @@ export default function ChoosePizzaForm({
   );
   const handleClickAdd = () => {
     if(currentItemId){
-      onSubmit(currentItemId, Array.from(selectedIngredients))
+      onSubmit(currentItemId, Array.from(selectedIngredients));
     }
   };
   return (

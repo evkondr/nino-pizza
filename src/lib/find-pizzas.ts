@@ -67,4 +67,4 @@ export const findPizzas = async (params: GetSearchParams) => {
       },
     });
     return categories;
-}
+};

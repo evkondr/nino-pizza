@@ -1,10 +1,10 @@
 'use client';
-import { Button } from '@/components/ui/button'
-import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
-import Link from 'next/link'
-import React, { PropsWithChildren } from 'react'
-import CartDrawerItem from './CartDrawerItem'
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import React, { PropsWithChildren } from 'react';
+import CartDrawerItem from './CartDrawerItem';
 import { getCartItemDetails } from '@/lib/get-cart-item-details';
 import { PizzaSize, PizzaType } from '@/lib/constants';
 import Title from './Title';
@@ -17,7 +17,7 @@ const CartDrawer = ({ children }:PropsWithChildren) => {
   const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
     const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
     updateItemQuantity(id, newQuantity);
-  }
+  };
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
@@ -91,7 +91,7 @@ const CartDrawer = ({ children }:PropsWithChildren) => {
         </div>
       </SheetContent>
     </Sheet>
-  )
-}
+  );
+};
 
-export default CartDrawer
+export default CartDrawer;

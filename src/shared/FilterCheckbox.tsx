@@ -28,7 +28,7 @@ const FilterCheckbox = ({
       </label>
       {endAdornment}
     </div>
-  )
-}
+  );
+};
 
-export default FilterCheckbox
+export default FilterCheckbox;

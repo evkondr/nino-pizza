@@ -1,7 +1,7 @@
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 import { PropsWithClass } from '@/types';
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren } from 'react';
 
 interface Props extends PropsWithClass, PropsWithChildren {
   value?: number
@@ -23,7 +23,7 @@ const CheckoutItemDetails = ({
           {loading ? <Skeleton className="h-6 w-16 rounded-[6px]" /> : `${value} ₽`}
         </span>
      </div>
-  )
-}
+  );
+};
 
-export default CheckoutItemDetails
+export default CheckoutItemDetails;

@@ -1,10 +1,10 @@
-import React from 'react'
-import { WhiteBlock } from '../WhiteBlock'
-import FormInput from '../form/FormInput'
-import AddressInput from '../form/AddressInput'
-import { Controller, useFormContext } from 'react-hook-form'
-import ErrorText from '../ErrorText'
-import { PropsWithClass } from '@/types'
+import React from 'react';
+import { WhiteBlock } from '../WhiteBlock';
+import FormInput from '../form/FormInput';
+import AddressInput from '../form/AddressInput';
+import { Controller, useFormContext } from 'react-hook-form';
+import ErrorText from '../ErrorText';
+import { PropsWithClass } from '@/types';
 
 const CheckoutAddressForm = ({ className }:PropsWithClass) => {
   const { control } = useFormContext();
@@ -25,7 +25,7 @@ const CheckoutAddressForm = ({ className }:PropsWithClass) => {
         <FormInput textArea name="comment" className="text-base" placeholder="Комментарий к заказу" />
       </div>
     </WhiteBlock>
-  )
-}
+  );
+};
 
-export default CheckoutAddressForm
+export default CheckoutAddressForm;

@@ -12,6 +12,6 @@ const CheckoutItemSkeleton = ({ className }:PropsWithClass) => {
       <div className="h-8 w-[133px] bg-gray-200 rounded animate-pulse" />
     </div>
   );
-}
+};
 
-export default CheckoutItemSkeleton
+export default CheckoutItemSkeleton;

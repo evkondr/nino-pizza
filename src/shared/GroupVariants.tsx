@@ -26,7 +26,7 @@ const GroupVariants = ({ items, onClick, className, value }: Props) => {
         </button>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default GroupVariants
+export default GroupVariants;

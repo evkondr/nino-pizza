@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { WhiteBlock } from '../WhiteBlock';
 import { PropsWithClass } from '@/types';
 import { cn } from '@/lib/utils';
@@ -51,7 +51,7 @@ const CheckoutSidebar = ({ className, totalAmount, loading }:Props) => {
         <ArrowRight className="w-5 ml-2" />
       </Button>
     </WhiteBlock>
-  )
-}
+  );
+};
 
-export default CheckoutSidebar
+export default CheckoutSidebar;

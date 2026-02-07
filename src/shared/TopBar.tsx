@@ -20,7 +20,7 @@ const TopBar = ({ categories, className }:Props) => {
         <SortPopup />
       </Container>
     </div>
-  )
-}
+  );
+};
 
-export default TopBar
+export default TopBar;

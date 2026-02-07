@@ -1,4 +1,4 @@
-import { getUserSession } from '@/lib/get-user-session'
+import { getUserSession } from '@/lib/get-user-session';
 import { prisma } from '@/lib/prisma-client';
 import ProfileForm from '@/shared/ProfileForm';
 import { redirect } from 'next/navigation';
@@ -13,10 +13,10 @@ const ProfilePage = async () => {
     where: {
       id: Number(session.id)
     }
-  })
+  });
   return (
     <ProfileForm data={user!} />
-  )
-}
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;

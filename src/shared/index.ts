@@ -22,4 +22,4 @@ export {
   Filters,
   FilterCheckbox,
   RangeSlider
-}
+};

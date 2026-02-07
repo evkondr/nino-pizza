@@ -6,4 +6,4 @@ export const apiClient = {
   productsService,
   ingredientsService,
   cartService
-}
+};

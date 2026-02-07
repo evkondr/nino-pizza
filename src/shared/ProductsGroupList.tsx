@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { ProductsWithRelations, PropsWithClass } from "@/types";
 import Title from "./Title";
 import { RefObject, useEffect, useRef } from "react";
@@ -29,7 +29,7 @@ const ProductsGroupList = ({
     if(intersection?.isIntersecting) {
       setActiveId(categoryId);
     }
-  }, [categoryId, intersection?.isIntersecting, setActiveId, title])
+  }, [categoryId, intersection?.isIntersecting, setActiveId, title]);
   return (
     <div className={className} id={title} ref={intersectionRef}>
       <Title text={title} size="lg" className="font-extrabold mb-5" />
@@ -46,7 +46,7 @@ const ProductsGroupList = ({
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductsGroupList
+export default ProductsGroupList;

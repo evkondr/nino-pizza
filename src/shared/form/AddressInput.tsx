@@ -1,5 +1,5 @@
-'use client'
-import React from 'react'
+'use client';
+import React from 'react';
 import { AddressSuggestions } from 'react-dadata';
 import 'react-dadata/dist/react-dadata.css';
 
@@ -16,7 +16,7 @@ const AddressInput = ({
       containerClassName='relative'
       suggestionsClassName='overflow-y-scroll absolute z-50 bg-white w-full max-h-30'
     />
-  )
-}
+  );
+};
 
-export default AddressInput
+export default AddressInput;

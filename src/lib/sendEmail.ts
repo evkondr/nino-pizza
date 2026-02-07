@@ -13,4 +13,4 @@ export const sendEmail = async (to: string, subject: string, template: React.Rea
   }
 
   return data;
-}
+};

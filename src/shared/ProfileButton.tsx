@@ -1,9 +1,9 @@
-import { CircleUser, User } from 'lucide-react'
-import React from 'react'
-import { Button } from '../components/ui/button'
-import { useSession } from 'next-auth/react'
-import Link from 'next/link'
-import { PropsWithClass } from '@/types'
+import { CircleUser, User } from 'lucide-react';
+import React from 'react';
+import { Button } from '../components/ui/button';
+import { useSession } from 'next-auth/react';
+import Link from 'next/link';
+import { PropsWithClass } from '@/types';
 
 interface Props extends PropsWithClass {
   onClickSignIn?: () => void;
@@ -27,7 +27,7 @@ const ProfileButton = ({
       </Button>
     </Link>)}
     </div>
-  )
-}
+  );
+};
 
-export default ProfileButton
+export default ProfileButton;

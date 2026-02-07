@@ -22,5 +22,5 @@ export const getCartDetails = (data: CartDto):ReturnProps => {
   return {
     items,
     totalAmount: data.totalAmount
-  }
-}
+  };
+};
