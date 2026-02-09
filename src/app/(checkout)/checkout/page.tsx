@@ -8,16 +8,19 @@ import CheckoutPersonalForm from "@/shared/checkout/CheckoutPersonalForm";
 import CheckoutSidebar from "@/shared/checkout/CheckoutSidebar";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { checkoutFormSchema, CheckoutFormValues } from "@/lib/schemas";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createOrder } from "@/lib/actions";
 import toast from "react-hot-toast";
 import { useRouter } from 'next/navigation';
+import { useSession } from "next-auth/react";
+import { apiClient } from "@/services/api-client";
 
 
 export default function CheckoutPage() {
   const { items, removeCartItem, updateItemQuantity, loading } = useCart();
   const [submitting, setSubmitting] = useState<boolean>(false);
   const router = useRouter();
+  const { data: session } = useSession();
   const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
     const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
     updateItemQuantity(id, newQuantity);
@@ -51,6 +54,18 @@ export default function CheckoutPage() {
       });
     }
   };
+  useEffect(() => {
+    async function fetchUserInfo() {
+      const data = await apiClient.authService.getMe();
+      const [firstName, lastName] = data.fullName.split(' ');
+      form.setValue('firstName', firstName);
+      form.setValue('lastName', lastName);
+      form.setValue('email', data.email);
+    }
+    if (session) {
+      fetchUserInfo();
+    }
+  }, [form, session]);
   return (
     <Container className="mt-10">
       <Title text="Оформление заказа" className="font-extrabold mb-8 text-[36px]" />
