@@ -1,4 +1,4 @@
-import { Prisma } from "@/generated/prisma";
+import { Prisma, Story, StoryItem } from "@/generated/prisma";
 
 export interface PropsWithClass {
   className?: string
@@ -106,3 +106,6 @@ export interface CreateCartItemValues {
   productItemId: number;
   ingredients?: number[];
 }
+export type IStory = Story & {
+  items: StoryItem[];
+};

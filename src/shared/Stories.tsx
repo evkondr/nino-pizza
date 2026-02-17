@@ -1,5 +1,5 @@
 'use client';
-import { IStory, PropsWithClass } from '@/types';
+
 import React, { useEffect } from 'react';
 import Container from './Container';
 import { cn } from '@/lib/utils';
@@ -7,6 +7,7 @@ import { apiClient } from '@/services/api-client';
 import Image from 'next/image';
 import { X } from 'lucide-react';
 import ReactStories from 'react-insta-stories';
+import { IStory, PropsWithClass } from '@/types';
 
 const Stories = ({ className }:PropsWithClass) => {
   const [stories, setStories] = React.useState<IStory[]>([]);
