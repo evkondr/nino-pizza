@@ -11,7 +11,7 @@
     "prisma:studio": "prisma studio",
     "prisma:seed": "npx prisma db seed",
     "postinstall": "prisma generate",
-    "deploy": "npm run prisma:seed && npm run build && npm run start"
+    "deploy": "npm run prisma:push && npm run prisma:seed && npm run build && npm run start"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
