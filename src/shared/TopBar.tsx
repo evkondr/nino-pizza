@@ -15,7 +15,7 @@ interface Props extends PropsWithClass{
 const TopBar = ({ categories, className }:Props) => {
   return (
     <div className={cn('sticky top-0 bg-white py-5 shadow-lg shadow-black/5 z-10', className)}>
-      <Container className="flex items-center justify-between ">
+      <Container className="flex items-center justify-between flex-wrap gap-3">
         <Categories items={categories.filter((item) => item.products.length > 0)}/>
         <SortPopup />
       </Container>
