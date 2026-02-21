@@ -6,7 +6,7 @@ import { Suspense } from "react";
 export const metadata: Metadata = {
   title: {
     default: "NiNo Pizza",
-    template: "%s | NiNo Pizza",
+    template: "NiNo Pizza | %s",
   },
   description: "Доставки пиццы по всему городу",
 };

@@ -1,6 +1,6 @@
 'use client';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import React, { PropsWithChildren } from 'react';
@@ -21,6 +21,9 @@ const CartDrawer = ({ children }:PropsWithChildren) => {
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
+      <div className="hidden">
+        <SheetTitle>Корзина</SheetTitle>
+      </div>
       <SheetContent className="flex flex-col justify-between pb-0 bg-[#F4F1EE]">
         <div className={cn('flex flex-col h-full', !totalAmount && 'justify-center')}>
           {totalAmount > 0 && (
@@ -37,11 +40,16 @@ const CartDrawer = ({ children }:PropsWithChildren) => {
             <p className="text-center text-neutral-500 mb-5">
               Добавьте хотя бы одну пиццу, чтобы совершить заказ
             </p>
-
-            <Button className="w-56 h-12 text-base" size="lg">
+            <SheetClose
+              className="w-56 h-12 bg-primary text-primary-foreground
+              hover:bg-primary/90 inline-flex items-center justify-center
+              whitespace-nowrap rounded-md active:translate-y-px text-sm 
+              font-medium ring-offset-background transition-colors focus-visible:outline-none
+              focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
+              disabled:pointer-events-none disabled:opacity-50 disabled:bg-gray-500" >
               <ArrowLeft className="w-5 mr-2" />
-              Вернуться назад
-            </Button>
+                Вернуться назад
+            </SheetClose>
           </div>
         )}
          {totalAmount > 0 && (
