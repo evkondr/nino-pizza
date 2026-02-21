@@ -17,7 +17,7 @@ import { apiClient } from "@/services/api-client";
 
 
 export default function CheckoutPage() {
-  const { items, removeCartItem, updateItemQuantity, loading } = useCart();
+  const { items, removeCartItem, updateItemQuantity, loading, totalAmount } = useCart();
   const [submitting, setSubmitting] = useState<boolean>(false);
   const router = useRouter();
   const { data: session } = useSession();
@@ -78,7 +78,7 @@ export default function CheckoutPage() {
               <CheckoutAddressForm className={loading ? 'opacity-40 pointer-events-none' : ''} />
             </div>
             <div className="w-[450px]">
-              <CheckoutSidebar totalAmount={3000} loading={loading || submitting} />
+              <CheckoutSidebar totalAmount={totalAmount} loading={loading || submitting} />
             </div>
           </div>
         </form>
